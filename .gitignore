@@ -20,6 +20,8 @@ gen/
 obj
 libs/armeabi
 ajcore.*.txt
+target
+flavor-*
 
 # Local configuration file (sdk path, etc)
 local.properties
