@@ -26,6 +26,7 @@ import com.waz.service.{MediaManagerService, PreferenceService, ZMessaging}
 import com.waz.utils.events.{EventContext, Signal, Subscription}
 import com.waz.zclient.calling.{CallPermissionsController, CurrentCallController}
 import com.waz.zclient.camera.{AndroidCameraFactory, GlobalCameraController}
+import com.waz.zclient.controllers.global.AccentColorController
 
 object WireApplication {
   var APP_INSTANCE: WireApplication = _
@@ -33,6 +34,7 @@ object WireApplication {
   lazy val Global = new Module {
     bind[Signal[Option[ZMessaging]]] to ZMessaging.currentUi.currentZms
     bind[PreferenceService] to new PreferenceService(inject[Context])
+    bind[AccentColorController] to new AccentColorController()
     bind[GlobalCallingController] to new GlobalCallingController(inject[Context])
     bind[GlobalCameraController] to new GlobalCameraController(inject[Context], new AndroidCameraFactory)(EventContext.Global)
     bind[MediaManagerService] to ZMessaging.currentGlobal.mediaManager
