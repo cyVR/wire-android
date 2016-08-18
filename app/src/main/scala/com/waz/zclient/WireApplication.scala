@@ -27,6 +27,7 @@ import com.waz.utils.events.{EventContext, Signal, Subscription}
 import com.waz.zclient.calling.{CallPermissionsController, CurrentCallController}
 import com.waz.zclient.camera.{AndroidCameraFactory, GlobalCameraController}
 import com.waz.zclient.controllers.global.AccentColorController
+import com.waz.zclient.messages.MessageViewFactory
 
 object WireApplication {
   var APP_INSTANCE: WireApplication = _
@@ -38,6 +39,7 @@ object WireApplication {
     bind[GlobalCallingController] to new GlobalCallingController(inject[Context])
     bind[GlobalCameraController] to new GlobalCameraController(inject[Context], new AndroidCameraFactory)(EventContext.Global)
     bind[MediaManagerService] to ZMessaging.currentGlobal.mediaManager
+    bind[MessageViewFactory] to new MessageViewFactory()
 
     //Global android services
     bind[PowerManager] to inject[Context].getSystemService(Context.POWER_SERVICE).asInstanceOf[PowerManager]
