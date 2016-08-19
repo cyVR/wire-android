@@ -27,7 +27,7 @@ import com.waz.utils.events.{EventContext, Signal, Subscription}
 import com.waz.zclient.calling.{CallPermissionsController, CurrentCallController}
 import com.waz.zclient.camera.{AndroidCameraFactory, GlobalCameraController}
 import com.waz.zclient.controllers.context.ScrollController
-import com.waz.zclient.controllers.global.AccentColorController
+import com.waz.zclient.controllers.global.{KeyboardController, AccentColorController}
 import com.waz.zclient.messages.MessageViewFactory
 
 object WireApplication {
@@ -56,6 +56,7 @@ object WireApplication {
   }
 
   def controllers(implicit ctx: WireContext) = new Module {
+    bind[KeyboardController] to new KeyboardController()
     bind[CurrentCallController] to new CurrentCallController()
     bind[CallPermissionsController] to new CallPermissionsController()
     bind[ScrollController] to new ScrollController()
