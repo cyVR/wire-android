@@ -26,6 +26,7 @@ import com.waz.service.{MediaManagerService, PreferenceService, ZMessaging}
 import com.waz.utils.events.{EventContext, Signal, Subscription}
 import com.waz.zclient.calling.{CallPermissionsController, CurrentCallController}
 import com.waz.zclient.camera.GlobalCameraController
+import com.waz.zclient.controllers.context.ScrollController
 import com.waz.zclient.controllers.global.AccentColorController
 import com.waz.zclient.messages.MessageViewFactory
 
@@ -34,6 +35,7 @@ object WireApplication {
 
   lazy val Global = new Module {
     bind[Signal[Option[ZMessaging]]] to ZMessaging.currentUi.currentZms
+    bind[Signal[ZMessaging]] to inject[Signal[Option[ZMessaging]]].collect { case Some(z) => z }
     bind[PreferenceService] to new PreferenceService(inject[Context])
     bind[AccentColorController] to new AccentColorController()
     bind[GlobalCallingController] to new GlobalCallingController(inject[Context])
@@ -56,6 +58,7 @@ object WireApplication {
   def controllers(implicit ctx: WireContext) = new Module {
     bind[CurrentCallController] to new CurrentCallController()
     bind[CallPermissionsController] to new CallPermissionsController()
+    bind[ScrollController] to new ScrollController()
 
     bind[PermissionActivity] to ctx.asInstanceOf[PermissionActivity]
     bind[PermissionsController] to new PermissionsController(new PermissionsWrapper)
