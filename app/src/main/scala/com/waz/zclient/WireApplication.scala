@@ -26,7 +26,6 @@ import com.waz.service.{MediaManagerService, PreferenceService, ZMessaging}
 import com.waz.utils.events.{EventContext, Signal, Subscription}
 import com.waz.zclient.calling.{CallPermissionsController, CurrentCallController}
 import com.waz.zclient.camera.{AndroidCameraFactory, GlobalCameraController}
-import com.waz.zclient.controllers.context.ScrollController
 import com.waz.zclient.controllers.global.{KeyboardController, AccentColorController}
 import com.waz.zclient.messages.MessageViewFactory
 
@@ -59,7 +58,6 @@ object WireApplication {
     bind[KeyboardController] to new KeyboardController()
     bind[CurrentCallController] to new CurrentCallController()
     bind[CallPermissionsController] to new CallPermissionsController()
-    bind[ScrollController] to new ScrollController()
 
     bind[PermissionActivity] to ctx.asInstanceOf[PermissionActivity]
     bind[PermissionsController] to new PermissionsController(new PermissionsWrapper)
