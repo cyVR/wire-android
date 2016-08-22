@@ -23,7 +23,7 @@ import android.content.Context
 import android.graphics
 import android.graphics.{Rect, SurfaceTexture}
 import android.view.OrientationEventListener
-import com.waz.testutils.TestUtils.{PrintSignalVals, RichLatch}
+import com.waz.testutils.TestUtils.{PrintValues, RichLatch}
 import com.waz.testutils.TestWireContext
 import com.waz.utils.events.EventContext
 import com.waz.zclient.Module
@@ -39,7 +39,7 @@ import org.scalatest.RobolectricSuite
 import org.scalatest.junit.JUnitSuite
 
 import scala.concurrent.duration.Duration
-import scala.concurrent.{Future, Await, ExecutionContext, Promise}
+import scala.concurrent.{Await, ExecutionContext, Future, Promise}
 import scala.util.{Failure, Success}
 
 @RunWith(classOf[RobolectricTestRunner])
@@ -48,7 +48,7 @@ class GlobalCameraControllerTest extends JUnitSuite with RobolectricSuite {
 
   implicit val defaultDuration = Duration(30, TimeUnit.SECONDS)
 
-  implicit val printSignalVals = PrintSignalVals(true)
+  implicit val printSignalVals: PrintValues = false
   implicit val context = mock(classOf[TestWireContext])
   implicit val eventContext = EventContext.Global
   implicit val executionContext = ExecutionContext.Implicits.global
